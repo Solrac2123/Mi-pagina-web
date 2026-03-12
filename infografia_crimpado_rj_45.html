@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infografía: Crimpado de cable UTP/Ethernet con conector RJ-45</title>
+  <style>
+    :root {
+      --bg: #eef4ff;
+      --panel: #ffffff;
+      --ink: #132238;
+      --muted: #4a607a;
+      --line: #d7e1f0;
+      --primary: #1456a0;
+      --primary-2: #0e7ac4;
+      --accent: #0ea5a4;
+      --soft: #e9f6fb;
+      --warn: #fff5df;
+      --danger: #ffe8e8;
+      --shadow: 0 10px 28px rgba(18, 36, 56, 0.12);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, #d9ebff 0, transparent 28%),
+        linear-gradient(180deg, #f4f8ff 0%, #eef4ff 100%);
+    }
+
+    .page {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 24px auto;
+      padding: 24px;
+    }
+
+    .infographic {
+      background: var(--panel);
+      border: 1px solid #dbe6f4;
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero {
+      padding: 28px;
+      background: linear-gradient(135deg, #0f3f78 0%, #1565b8 58%, #1a8bd3 100%);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -80px -80px auto;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.45fr .95fr;
+      gap: 22px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.15);
+      font-size: 13px;
+      letter-spacing: .4px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 40px;
+      line-height: 1.08;
+    }
+
+    .subtitle {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.92);
+      max-width: 780px;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 24px;
+      padding: 18px;
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-card h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .hero-card p {
+      margin: 0;
+      line-height: 1.55;
+      font-size: 14px;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .content {
+      padding: 24px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    .soft { background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%); }
+    .teal { background: linear-gradient(180deg, #ffffff 0%, #f1fbfb 100%); }
+    .warn { background: linear-gradient(180deg, #fffdf8 0%, var(--warn) 100%); }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 14px;
+      font-size: 22px;
+      color: var(--primary);
+    }
+
+    .section-title .icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: #e8f1ff;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 16px;
+      flex: 0 0 34px;
+    }
+
+    p, li { line-height: 1.55; }
+
+    .mini-note {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .chip {
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: #eef5ff;
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid #d8e6fb;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .step {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      background: linear-gradient(180deg, #fff 0%, #f8fbff 100%);
+      position: relative;
+      min-height: 212px;
+    }
+
+    .step-number {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: var(--primary);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .step h4 {
+      margin: 0 0 8px;
+      color: var(--primary);
+      font-size: 18px;
+    }
+
+    .step p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .diagram {
+      margin-top: 12px;
+      border: 1px dashed #c7d7ea;
+      border-radius: 16px;
+      background: #f8fbff;
+      padding: 12px;
+    }
+
+    .pinout {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .pin {
+      border-radius: 12px;
+      padding: 10px 6px;
+      color: #0d1b2a;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid rgba(0,0,0,.08);
+    }
+
+    .wog { background: linear-gradient(180deg,#fff 0%,#eaeaea 100%); }
+    .org { background: linear-gradient(180deg,#ffefe0 0%,#ffc58c 100%); }
+    .wgr { background: linear-gradient(180deg,#fff 0%,#eef7ee 100%); }
+    .blu { background: linear-gradient(180deg,#eef6ff 0%,#9dc7ff 100%); }
+    .wbl { background: linear-gradient(180deg,#fff 0%,#f2f7ff 100%); }
+    .grn { background: linear-gradient(180deg,#eafbea 0%,#8ce39b 100%); }
+    .wbr { background: linear-gradient(180deg,#fff 0%,#f8f1ea 100%); }
+    .brn { background: linear-gradient(180deg,#f5ece4 0%,#c59a71 100%); }
+
+    .pair-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .pair {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: #f7fbff;
+      border: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    .tools-list, .mistakes-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .callout {
+      border-left: 6px solid var(--accent);
+      padding: 14px 16px;
+      background: var(--soft);
+      border-radius: 14px;
+      color: #17324b;
+      font-size: 14px;
+    }
+
+    .footer {
+      padding: 0 24px 24px;
+    }
+
+    .footer-box {
+      background: linear-gradient(135deg, #0f3f78 0%, #1667b8 100%);
+      color: #fff;
+      border-radius: 22px;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-box strong { display: block; font-size: 18px; margin-bottom: 6px; }
+    .footer-box span { font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.92); }
+
+    .badge {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      white-space: nowrap;
+      font-weight: 700;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid, .grid-2, .grid-3, .steps, .pair-list {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 32px; }
+      .footer-box { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: 100%; margin: 0; padding: 0; }
+      .infographic { box-shadow: none; border: none; border-radius: 0; }
+      .step { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="infographic">
+      <header class="hero">
+        <div class="hero-grid">
+          <div>
+            <span class="eyebrow">INFOGRAFÍA · CABLEADO ESTRUCTURADO</span>
+            <h1>Crimpado de cable UTP/Ethernet con conector RJ-45</h1>
+            <h1>Redes de computadoras</h1>
+            <p class="subtitle">
+              Procedimiento técnico para preparar, ordenar, insertar y prensar un cable de red de par trenzado,
+              siguiendo normas de cableado estructurado y buenas prácticas de instalación.
+            </p>
+          </div>
+          <aside class="hero-card">
+            <h3>Objetivo de aprendizaje</h3>
+            <p>
+              Aplicar correctamente los conocimientos de cableado estructurado para elaborar un cable UTP/Ethernet
+              funcional, con terminación ordenada, continuidad eléctrica y cumplimiento del estándar T568B
+              (o T568A cuando el diseño lo requiera).
+            </p>
+          </aside>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="grid-2">
+          <article class="card soft">
+            <h2 class="section-title"><span class="icon">1</span> ¿Qué es el crimpado?</h2>
+            <p>
+              El <strong>crimpado</strong> es el proceso mecánico mediante el cual se fija un conector <strong>RJ-45</strong>
+              a un cable de red <strong>UTP</strong>, alineando sus ocho conductores según un estándar de colores.
+              La finalidad es garantizar transmisión estable de datos, integridad de señal y compatibilidad con equipos Ethernet.
+            </p>
+            <div class="chips">
+              <span class="chip">8 conductores</span>
+              <span class="chip">4 pares trenzados</span>
+              <span class="chip">Conector 8P8C</span>
+              <span class="chip">Uso en redes LAN</span>
+            </div>
+            <p class="mini-note">
+              En la práctica académica y profesional, el armado correcto reduce pérdidas, interferencia y fallos de conexión.
+            </p>
+          </article>
+
+          <article class="card teal">
+            <h2 class="section-title"><span class="icon">2</span> Materiales y herramientas</h2>
+            <ul class="tools-list">
+              <li><strong>Cable UTP</strong> categoría 5e, 6 o superior.</li>
+              <li><strong>Conectores RJ-45</strong> compatibles con la categoría del cable.</li>
+              <li><strong>Pinza crimpadora</strong> para RJ-45.</li>
+              <li><strong>Pelacables o cutter</strong> para retirar la cubierta externa.</li>
+              <li><strong>Tijeras o cortador</strong> para emparejar conductores.</li>
+              <li><strong>Probador de red</strong> para verificar continuidad y orden de pines.</li>
+            </ul>
+            <div class="callout">
+              Recomendación técnica: mantener la torsión de los pares lo más cerca posible del conector para minimizar diafonía y pérdida de desempeño.
+            </div>
+          </article>
+        </div>
+
+        <article class="card">
+          <h2 class="section-title"><span class="icon">3</span> Norma de colores más utilizada: T568B</h2>
+          <p>
+            Para cables de red rectos en entornos educativos y de oficina, el orden de colores más empleado es el <strong>T568B</strong>.
+            El conector debe observarse <strong>de frente, con la pestaña hacia abajo</strong> y los pines orientados hacia arriba.
+          </p>
+          <div class="diagram">
+            <strong>Secuencia T568B (pin 1 al pin 8)</strong>
+            <div class="pinout">
+              <div class="pin wog">1<br>Blanco/Naranja</div>
+              <div class="pin org">2<br>Naranja</div>
+              <div class="pin wgr">3<br>Blanco/Verde</div>
+              <div class="pin blu">4<br>Azul</div>
+              <div class="pin wbl">5<br>Blanco/Azul</div>
+              <div class="pin grn">6<br>Verde</div>
+              <div class="pin wbr">7<br>Blanco/Café</div>
+              <div class="pin brn">8<br>Café</div>
+            </div>
+          </div>
+          <div class="pair-list">
+            <div class="pair"><strong>Par 1:</strong> Azul y Blanco/Azul</div>
+            <div class="pair"><strong>Par 2:</strong> Naranja y Blanco/Naranja</div>
+            <div class="pair"><strong>Par 3:</strong> Verde y Blanco/Verde</div>
+            <div class="pair"><strong>Par 4:</strong> Café y Blanco/Café</div>
+          </div>
+          <p class="mini-note">
+            Nota: el estándar <strong>T568A</strong> también es válido; la diferencia principal es el intercambio de los pares verde y naranja.
+          </p>
+        </article>
+
+        <article class="card soft">
+          <h2 class="section-title"><span class="icon">4</span> Procedimiento secuencial de crimpado</h2>
+          <div class="steps">
+            <div class="step">
+              <div class="step-number">01</div>
+              <h4>Medir y cortar</h4>
+              <p>
+                Definir la longitud requerida del cable según el punto de red y cortar de forma recta para facilitar el armado posterior.
+              </p>
+              <div class="diagram">
+                <img src="https://www.cablematters.com/blog/image.axd?picture=%2FArticlePhotos%2F1-CuttingWire.jpg" alt="Corte del cable Ethernet con herramienta de crimpado" style="width:100%; border-radius:12px; display:block; margin-bottom:10px;" />
+                Corte uniforme = mejor inserción y menor desperdicio.
+                <div class="mini-note">Imagen referencial: Cable Matters.</div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">02</div>
+              <h4>Retirar cubierta</h4>
+              <p>
+                Pelar aproximadamente <strong>2 a 3 cm</strong> de la chaqueta externa sin dañar el aislamiento individual de los conductores.
+              </p>
+              <div class="diagram">
+                <img src="https://www.cablematters.com/blog/image.axd?picture=%2FArticlePhotos%2F2.StrippingWire.jpg" alt="Retiro de la cubierta externa del cable UTP" style="width:100%; border-radius:12px; display:block; margin-bottom:10px;" />
+                La cubierta retirada debe dejar visibles los 4 pares trenzados.
+                <div class="mini-note">Imagen referencial: Cable Matters.</div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">03</div>
+              <h4>Destrenzar y ordenar</h4>
+              <p>
+                Separar los pares, alinear los hilos y colocarlos según el estándar seleccionado. En esta infografía se usa <strong>T568B</strong>.
+              </p>
+              <div class="diagram">
+                <img src="https://resource.fs.com/mall/generalImg/B5LtbXz0JoMO2bxvDtPcFPlOnQ8.jpeg" alt="Ordenamiento de los conductores del cable según T568B" style="width:100%; border-radius:12px; display:block; margin-bottom:10px;" />
+                Orden: B/N · N · B/V · A · B/A · V · B/C · C
+                <div class="mini-note">Imagen referencial: FS.com.</div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">04</div>
+              <h4>Emparejar puntas</h4>
+              <p>
+                Estirar y recortar los ocho conductores para que queden rectos, paralelos y con la misma longitud.
+              </p>
+              <div class="diagram">
+                <img src="https://resource.fs.com/mall/generalImg/LC2MbgFghowxMvxe31Xcr09lnad.jpeg" alt="Recorte y emparejado de los conductores del cable Ethernet" style="width:100%; border-radius:12px; display:block; margin-bottom:10px;" />
+                Longitud ideal antes de insertar: aprox. 1.2 a 1.5 cm.
+                <div class="mini-note">Imagen referencial: FS.com.</div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">05</div>
+              <h4>Insertar en RJ-45</h4>
+              <p>
+                Introducir cuidadosamente los conductores en el conector hasta el fondo, verificando que cada hilo llegue a su canal correspondiente.
+              </p>
+              <div class="diagram">
+                <img src="https://resource.fs.com/mall/generalImg/PImrbWfFio8lFoxWz5rcmOz6nmy.png" alt="Inserción de los conductores en el conector RJ45" style="width:100%; border-radius:12px; display:block; margin-bottom:10px;" />
+                La cubierta del cable también debe entrar un poco dentro del conector.
+                <div class="mini-note">Imagen referencial: FS.com.</div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">06</div>
+              <h4>Verificar orden</h4>
+              <p>
+                Antes de prensar, revisar visualmente que la secuencia de colores sea correcta y que ninguno de los conductores se haya cruzado.
+              </p>
+              <div class="diagram">
+                <img src="https://resource.fs.com/mall/generalImg/PImrbWfFio8lFoxWz5rcmOz6nmy.png" alt="Verificación visual del orden de colores dentro del conector RJ45" style="width:100%; border-radius:12px; display:block; margin-bottom:10px;" />
+                Error en un pin = falla total o enlace inestable.
+                <div class="mini-note">Imagen referencial: FS.com.</div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">07</div>
+              <h4>Crimpar</h4>
+              <p>
+                Colocar el conector en la pinza crimpadora y ejercer presión firme hasta que los contactos metálicos perforen el aislamiento.
+              </p>
+              <div class="diagram">
+                <img src="https://resource.fs.com/mall/generalImg/NXZCbAVh0oH04TxqXw2cwCkKn2e.jpeg" alt="Crimpado del conector RJ45 con pinza de crimpado" style="width:100%; border-radius:12px; display:block; margin-bottom:10px;" />
+                La pestaña plástica debe fijar la cubierta para brindar sujeción mecánica.
+                <div class="mini-note">Imagen referencial: FS.com.</div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-number">08</div>
+              <h4>Probar el cable</h4>
+              <p>
+                Utilizar un tester de red para confirmar continuidad, orden correcto de pines y ausencia de pares abiertos o cruzados.
+              </p>
+              <div class="diagram">
+                <img src="https://resource.fs.com/mall/generalImg/MC0fbUmN8ooIGRxuWd6ckxo4nfh.png" alt="Prueba de continuidad del cable con tester de red" style="width:100%; border-radius:12px; display:block; margin-bottom:10px;" />
+                Resultado esperado: 1-1, 2-2, 3-3, 4-4, 5-5, 6-6, 7-7, 8-8.
+                <div class="mini-note">Imagen referencial: FS.com.</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <div class="grid-3">
+          <article class="card warn">
+            <h2 class="section-title"><span class="icon">5</span> Errores frecuentes</h2>
+            <ul class="mistakes-list">
+              <li>Alterar el orden de colores del estándar.</li>
+              <li>Dejar conductores con distinta longitud.</li>
+              <li>No introducir completamente los hilos al conector.</li>
+              <li>Dañar el cobre o el aislamiento al pelar.</li>
+              <li>Destrenzar demasiado los pares.</li>
+              <li>No probar el cable después del crimpado.</li>
+            </ul>
+          </article>
+
+          <article class="card soft">
+            <h2 class="section-title"><span class="icon">6</span> Buenas prácticas</h2>
+            <ul class="mistakes-list">
+              <li>Usar conectores acordes a la categoría del cable.</li>
+              <li>Trabajar con cortes limpios y precisos.</li>
+              <li>Mantener la torsión cerca del extremo terminal.</li>
+              <li>Realizar inspección visual antes de crimpar.</li>
+              <li>Etiquetar cables si formarán parte de una instalación.</li>
+              <li>Verificar continuidad con probador certificado.</li>
+            </ul>
+          </article>
+
+          <article class="card teal">
+            <h2 class="section-title"><span class="icon">7</span> Resultado esperado</h2>
+            <p>
+              Un cable correctamente crimpado debe presentar:
+            </p>
+            <ul class="mistakes-list">
+              <li>Conectividad estable entre dispositivos de red.</li>
+              <li>Orden de pines conforme al estándar elegido.</li>
+              <li>Sujeción mecánica adecuada del conector.</li>
+              <li>Respuesta positiva en el probador de red.</li>
+            </ul>
+            <div class="callout">
+              Cuando ambos extremos usan el mismo estándar, se obtiene un <strong>cable recto</strong>. Si se combinan T568A y T568B, se forma un <strong>cable cruzado</strong>.
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="footer-box">
+          <div>
+            <strong>Conclusión</strong>
+            <span>
+              El crimpado de un cable UTP/Ethernet exige precisión, limpieza y respeto por las normas de cableado.
+              Un procedimiento correcto asegura transmisión confiable, reduce fallas y fortalece las competencias técnicas del área de redes.
+            </span>
+          </div>
+          <div class="badge">Versión lista para PDF sin internet</div>
+        </div>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>
